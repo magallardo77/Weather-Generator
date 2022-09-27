@@ -1,0 +1,27 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+    background-color: white;
+}
+
+h1 {
+	text-align: center;
+	color: white;
+	padding: 20px;
+	background-color: #87cefa;
+}
+
+h3 {
+    background-color: #87cefa;
+    color: white;
+}
+
+#info {
+	margin: 20px;
+}
+
+.sidebar {
+	background-color: #87cefa;
+	padding: 20px;
+}
+
