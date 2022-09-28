@@ -1,3 +1,8 @@
+let fivedate = [];
+let fivetemp = [];
+let fivehumidity = [];
+let fivewind = [];
+
 $("#search-city").on("click", function (event) {
     event.preventDefault();
 
@@ -34,12 +39,21 @@ var rendercityUV = function (lattitude, longitude) {
             $(`#uv`).text(`UV Index: ${data.current.uvi}`);
             $(`#wind`).text(`Wind Speed: ${data.current.wind_speed}`);
             
+            for (i=0; i < 5; i++) {
+
+                fivedate[i] = moment(data.daily[i+1].dt, 'X').format("LL");
+                fivetemp[i] = data.daily[i+1].temp.day;
+                fivehumidity[i] = data.daily[i+1].humidity;
+                fivewind[i] = data.daily[i+1].wind_speed;
+            }
+            console.log(fivedate)
+            console.log(fivetemp)
+            console.log(fivehumidity)
+            console.log(fivewind)
+            
         });
 }
 var date = moment().format("LL");
-function cityname() {
-   
 
-}
 
 
