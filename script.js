@@ -33,23 +33,29 @@ var rendercityUV = function (lattitude, longitude) {
         .then(function (data) {
             console.log(data);
 
-            $(`.card-title`).text(`${city} (${date})`);
+            $(`#bigCard`).text(`${city} (${date})`);
             $(`#temperature`).text(`Temperature: ${data.current.temp}`);
             $(`#humidity`).text(`Humidity: ${data.current.humidity}`);
             $(`#uv`).text(`UV Index: ${data.current.uvi}`);
             $(`#wind`).text(`Wind Speed: ${data.current.wind_speed}`);
-            
-            for (i=0; i < 5; i++) {
 
-                fivedate[i] = moment(data.daily[i+1].dt, 'X').format("LL");
-                fivetemp[i] = data.daily[i+1].temp.day;
-                fivehumidity[i] = data.daily[i+1].humidity;
-                fivewind[i] = data.daily[i+1].wind_speed;
+            for (i = 0; i < 5; i++) {
+                fivedate[i] = moment(data.daily[i + 1].dt, 'X').format("LL");
+                fivetemp[i] = data.daily[i + 1].temp.day;
+                fivehumidity[i] = data.daily[i + 1].humidity;
+                fivewind[i] = data.daily[i + 1].wind_speed;
             }
-            console.log(fivedate)
-            console.log(fivetemp)
-            console.log(fivehumidity)
-            console.log(fivewind)
+            for (i = 0; i < 5; i++) {
+                $(`#fiveCard`).append(`
+                <div class="card col-3" style="width: 14rem;" id="info">
+                <div class="card-body">
+                    <h5 class="card-title">${fivedate[i]}</h5>
+                </div>
+                    <p class="list-group-item" >Temperature:${fivetemp[i]}</p>
+                    <p class="list-group-item" >Humidity:${fivehumidity[i]}</p>
+                    <p class="list-group-item" >Wind Speed:${fivewind[i]}</p>
+                </div>`); 
+            }
             
         });
 }
